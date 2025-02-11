@@ -1,5 +1,6 @@
 package com.example.springcloud.eureka.client.order.entity;
 
+import com.example.springcloud.eureka.client.order.dto.OrderRequestDto;
 import com.example.springcloud.eureka.client.order.dto.OrderResponseDto;
 import jakarta.persistence.*;
 import lombok.*;
@@ -44,6 +45,14 @@ public class Order {
     @PreUpdate
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
+    }
+
+    public static Order createOrder(OrderRequestDto orderRequestDto, String createdBy){
+        return Order.builder()
+                .orderItemIds(orderRequestDto.getOrderItemIds())
+                .createdBy(createdBy)
+                .status(OrderStatus.CREATED)
+                .build();
     }
 }
 
