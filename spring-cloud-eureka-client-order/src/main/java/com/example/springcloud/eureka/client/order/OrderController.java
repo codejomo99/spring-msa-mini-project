@@ -23,8 +23,18 @@ public class OrderController {
     // read
 
     // update
+    @PutMapping("/{orderId}")
+    public OrderResponseDto updateOrder(@PathVariable Long orderId,
+                                        @RequestBody OrderRequestDto orderRequestDto,
+                                        @RequestHeader(value = "X-User-Id", required = true) String userId,
+                                        @RequestHeader(value = "X-Role", required = true) String role) {
+        return orderService.updateOrder(orderId, orderRequestDto, userId);
+    }
 
     // delete
-
+    @DeleteMapping("/{orderId}")
+    public void deleteOrder(@PathVariable Long orderId, @RequestParam String deletedBy) {
+        orderService.deleteOrder(orderId, deletedBy);
+    }
 
 }

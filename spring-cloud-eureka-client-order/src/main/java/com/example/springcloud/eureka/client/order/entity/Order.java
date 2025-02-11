@@ -54,5 +54,18 @@ public class Order {
                 .status(OrderStatus.CREATED)
                 .build();
     }
+
+    // 업데이트 메서드
+    public void updateOrder(List<Long> orderItemIds, String updatedBy, OrderStatus status) {
+        this.orderItemIds = orderItemIds;
+        this.updatedBy = updatedBy;
+        this.status = status;
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    public void deleteOrder(String deletedBy) {
+        this.deletedBy = deletedBy;
+        this.deletedAt = LocalDateTime.now();
+    }
 }
 
