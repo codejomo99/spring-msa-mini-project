@@ -66,4 +66,17 @@ public class Product {
         updatedAt = LocalDateTime.now();
     }
 
+    public void updateProduct(ProductRequestDto orderRequestDto, String userId) {
+        this.name = orderRequestDto.getName();
+        this.description = orderRequestDto.getDescription();
+        this.price = orderRequestDto.getPrice();
+        this.quantity = orderRequestDto.getQuantity();
+        this.updatedBy = userId;
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    public void deleteProduct(String deletedBy) {
+        this.deletedBy = deletedBy;
+        this.deletedAt = LocalDateTime.now();
+    }
 }
