@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/spring-cloud-eureka-server/spring-cloud-eureka-server.iml" filepath="$PROJECT_DIR$/spring-cloud-eureka-server/spring-cloud-eureka-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-eureka-client-auth/spring-cloud-eureka-client-auth.iml" filepath="$PROJECT_DIR$/spring-cloud-eureka-client-auth/spring-cloud-eureka-client-auth.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-cloud-msa-miniproject.iml" filepath="$PROJECT_DIR$/spring-cloud-msa-miniproject.iml" />
     </modules>
   </component>
