@@ -3,6 +3,7 @@ package com.mini.springcloud.eureka.client.auth.user;
 import com.mini.springcloud.eureka.client.auth.AuthService;
 import com.mini.springcloud.eureka.client.auth.dto.AuthResponse;
 import com.mini.springcloud.eureka.client.auth.dto.SignInRequest;
+import com.mini.springcloud.eureka.client.auth.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,5 +21,12 @@ public class UserController {
         String token = authService.signIn(request.getUserId(), request.getPassword());
 
         return ResponseEntity.ok(new AuthResponse(token));
+    }
+
+    @PostMapping("/auth/signUp")
+    public ResponseEntity<?> signUp(@RequestBody User user){
+        User createdUser = authService.signUp(user);
+
+        return ResponseEntity.ok(createdUser);
     }
 }
