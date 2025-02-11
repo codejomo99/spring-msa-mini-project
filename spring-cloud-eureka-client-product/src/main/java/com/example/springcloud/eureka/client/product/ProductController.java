@@ -55,4 +55,10 @@ public class ProductController {
     public void deleteProduct(@PathVariable Long productId, @RequestParam String deletedBy) {
         productService.deleteProduct(productId, deletedBy);
     }
+
+    // 물건 갯수 줄이기
+    @GetMapping("/{id}/reduceQuantity")
+    public void reduceProductQuantity(@PathVariable Long id, @RequestParam int quantity) {
+        productService.reduceProductQuantity(id, quantity);
+    }
 }

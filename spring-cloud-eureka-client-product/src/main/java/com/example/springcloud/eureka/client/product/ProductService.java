@@ -59,4 +59,17 @@ public class ProductService {
     public Page<ProductResponseDto> getProducts(ProductSearchDto searchDto, Pageable pageable) {
         return productRepository.searchProducts(searchDto,pageable);
     }
+
+    @Transactional
+    public void reduceProductQuantity(Long productId, int quantity) {
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new IllegalArgumentException("Product not found with ID: " + productId));
+
+        if (product.getQuantity() < quantity) {
+            throw new IllegalArgumentException("Not enough quantity for product ID: " + productId);
+        }
+
+        product.reduceQuantity(quantity);
+        productRepository.save(product);
+    }
 }

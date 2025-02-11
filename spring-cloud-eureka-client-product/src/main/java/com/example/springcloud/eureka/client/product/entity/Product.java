@@ -67,4 +67,8 @@ public class Product {
         this.deletedBy = deletedBy;
         this.deletedAt = LocalDateTime.now();
     }
+
+    public void reduceQuantity(int i) {
+        this.quantity = this.quantity - i;
+    }
 }
