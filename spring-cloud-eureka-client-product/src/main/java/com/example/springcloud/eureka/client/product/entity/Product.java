@@ -1,6 +1,8 @@
 package com.example.springcloud.eureka.client.product.entity;
 
 
+import com.example.springcloud.eureka.client.product.dto.ProductRequestDto;
+import com.example.springcloud.eureka.client.product.dto.ProductResponseDto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,6 +31,30 @@ public class Product {
     private String updatedBy;
     private LocalDateTime deletedAt;
     private String deletedBy;
+
+    public static Product createProduct(ProductRequestDto requestDto,String userId) {
+        return Product.builder()
+                .name(requestDto.getName())
+                .description(requestDto.getDescription())
+                .price(requestDto.getPrice())
+                .quantity(requestDto.getQuantity())
+                .createdBy(userId)
+                .build();
+    }
+
+    private ProductResponseDto toResponseDto(Product product) {
+        return new ProductResponseDto(
+                product.getId(),
+                product.getName(),
+                product.getDescription(),
+                product.getPrice(),
+                product.getQuantity(),
+                product.getCreatedAt(),
+                product.getCreatedBy(),
+                product.getUpdatedAt(),
+                product.getUpdatedBy()
+        );
+    }
 
     @PrePersist
     protected void onCreate() {
