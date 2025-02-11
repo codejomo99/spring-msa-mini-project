@@ -2,8 +2,11 @@ package com.example.springcloud.eureka.client.product;
 
 import com.example.springcloud.eureka.client.product.dto.ProductRequestDto;
 import com.example.springcloud.eureka.client.product.dto.ProductResponseDto;
+import com.example.springcloud.eureka.client.product.dto.ProductSearchDto;
 import com.example.springcloud.eureka.client.product.entity.Product;
-import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -42,5 +45,18 @@ public class ProductService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found or has been deleted"));
         product.deleteProduct(deletedBy);
         productRepository.save(product);
+    }
+
+    @Transactional(readOnly = true)
+    public ProductResponseDto getProductById(Long id) {
+        Product product = productRepository.findById(id)
+                .filter(p -> p.getDeletedAt() == null)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found or has been deleted"));
+
+        return new ProductResponseDto(product);
+    }
+
+    public Page<ProductResponseDto> getProducts(ProductSearchDto searchDto, Pageable pageable) {
+        return productRepository.searchProducts(searchDto,pageable);
     }
 }

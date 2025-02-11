@@ -10,8 +10,8 @@ import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
+@Builder(access = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "products")
 public class Product {
@@ -32,6 +32,8 @@ public class Product {
     private LocalDateTime deletedAt;
     private String deletedBy;
 
+
+
     public static Product createProduct(ProductRequestDto requestDto,String userId) {
         return Product.builder()
                 .name(requestDto.getName())
@@ -40,20 +42,6 @@ public class Product {
                 .quantity(requestDto.getQuantity())
                 .createdBy(userId)
                 .build();
-    }
-
-    private ProductResponseDto toResponseDto(Product product) {
-        return new ProductResponseDto(
-                product.getId(),
-                product.getName(),
-                product.getDescription(),
-                product.getPrice(),
-                product.getQuantity(),
-                product.getCreatedAt(),
-                product.getCreatedBy(),
-                product.getUpdatedAt(),
-                product.getUpdatedBy()
-        );
     }
 
     @PrePersist
