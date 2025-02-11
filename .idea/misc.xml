@@ -4,6 +4,7 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/spring-cloud-eureka-client-auth" />
     <file type="web" url="file://$PROJECT_DIR$/spring-cloud-eureka-client-gateway" />
+    <file type="web" url="file://$PROJECT_DIR$/spring-cloud-eureka-client-product" />
     <file type="web" url="file://$PROJECT_DIR$/spring-cloud-eureka-server" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_23" project-jdk-name="azul-17" project-jdk-type="JavaSDK">
