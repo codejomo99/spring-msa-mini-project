@@ -61,4 +61,12 @@ public class OrderService {
         order.deleteOrder(deletedBy);
         orderRepository.save(order);
     }
+
+    @Transactional(readOnly = true)
+    public OrderResponseDto getOrderById(Long orderId) {
+        Order order = orderRepository.findById(orderId)
+                .filter(o -> o.getDeletedAt() == null)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found or has been deleted"));
+        return new OrderResponseDto(order);
+    }
 }

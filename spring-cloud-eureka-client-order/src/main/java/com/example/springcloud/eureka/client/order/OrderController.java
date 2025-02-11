@@ -20,7 +20,13 @@ public class OrderController {
         return orderService.createOrder(orderRequestDto,userId);
     }
 
-    // read
+    // read (단일)
+    @GetMapping("/{orderId}")
+    public OrderResponseDto getOrderById(@PathVariable Long orderId) {
+        return orderService.getOrderById(orderId);
+    }
+
+    // read (전체)
 
     // update
     @PutMapping("/{orderId}")
