@@ -1,4 +1,4 @@
-package com.example.springcloud.eureka.client.order.product;
+package com.example.springcloud.eureka.client.order.productclient;
 
 
 import lombok.AllArgsConstructor;

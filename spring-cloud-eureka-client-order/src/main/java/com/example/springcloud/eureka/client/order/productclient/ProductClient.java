@@ -1,4 +1,4 @@
-package com.example.springcloud.eureka.client.order.product;
+package com.example.springcloud.eureka.client.order.productclient;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
